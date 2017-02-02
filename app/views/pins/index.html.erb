@@ -1,27 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Lista Pinów</h1>
 
-<table>
-  <thead>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h2>Lista Pinów</h2></div>
+  <!--  <div class="panel-body">
+  <p>...</p> 
+  </div>   --> 
+
+  <!-- Table -->
+  <table class="table">
+     <thead>
     <tr>
       <th>Opis</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <tbody>
+     <tbody>
     <% @pins.each do |pin| %>
       <tr>
         <td><%= pin.decription %></td>
         <td><%= link_to 'Pokarz', pin %></td>
+        <% if pin.user == current_user %>
         <td><%= link_to 'Edytuj', edit_pin_path(pin) %></td>
         <td><%= link_to 'Usuń', pin, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
-</table>
+  </table>
 
-<br>
-
-<%= link_to 'Nowy Pin', new_pin_path %>
+  <div class="panel-footer"><%= link_to 'Nowy Pin', new_pin_path %></div>
+</div>
